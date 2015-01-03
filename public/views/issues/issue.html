@@ -1,0 +1,33 @@
+
+<div class="row issue">
+    <div class="col-xs-12">
+        <div class="page-header">
+            <h3>
+                <a ui-sref="issues({vendor: params.vendor, repository: params.repository})"
+                   class="btn btn-default" aria-label="Back">
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                </a>
+
+                {{ issue.title }}
+                <small>
+                    <a href="{{ issue.user.html_url }}">{{ issue.user.login }}</a> opened this issue
+                    <span am-time-ago="issue.created_at"></span>
+                </small>
+            </h3>
+        </div>
+    </div>
+
+    <div class="media" ng-repeat="comment in comments">
+        <a class="media-left" href="#">
+            <img ng-src="{{ comment.user.avatar_url }}" alt="{{ comment.user.login }}">
+        </a>
+
+        <div class="media-body">
+            <h4 class="media-heading">
+                <a href="{{ comment.user.html_url }}">{{ comment.user.login }}</a>
+                <small am-time-ago="comment.updated_at"></small>
+            </h4>
+            {{ comment.body }}
+        </div>
+    </div>
+</div>

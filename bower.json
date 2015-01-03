@@ -1,0 +1,6 @@
+{
+  "name": "luknei/github-issues",
+  "dependencies": {
+    "bootstrap":"3.3.*"
+  }
+}

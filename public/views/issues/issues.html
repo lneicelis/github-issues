@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Showing issues of "{{ params.vendor + '/' + params.repository }}" repository</h3>
+
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="issue in issues">
+                <span class="label" ng-class="{'label-success': issue.state === 'open'}">
+                    {{ issue.state }}
+                </span>
+                &nbsp;
+                <a ui-sref="issue({vendor: params.vendor, repository: params.repository, id: issue.number})">
+                    {{ issue.title }}
+                    <span class="badge">{{ issue.comments }}</span>
+                </a>
+            </li>
+        </ul>
+
+        <nav>
+            <ul class="pager">
+                <li>
+                    <button ng-click="loadMore()" class="btn">
+                        <span class="glyphicon glyphicon-retweet"></span>
+                        Load More
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
