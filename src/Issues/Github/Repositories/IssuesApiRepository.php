@@ -2,6 +2,8 @@
 
 namespace Issues\Github\Repositories;
 
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Session\SessionInterface;
 use Issues\Github\Contracts\IssuesRepositoryContract;
 use Issues\GitHub\Factories\ClientFactory as GitHubClient;
 
@@ -17,11 +19,19 @@ class IssuesApiRepository implements IssuesRepositoryContract
     private $gitHubClient;
 
     /**
-     * @param GitHubClient $gitHubClient
+     * @param GitHubClient $factory
+     * @param Container $container
+     * @internal param GitHubClient $gitHubClient
      */
-    public function __construct(GitHubClient $gitHubClient)
+    public function __construct(GitHubClient $factory, Container $container)
     {
-        $this->gitHubClient = $gitHubClient->create();
+        /** @var SessionInterface $session */
+        $session = $container['session'];
+
+        $this->gitHubClient = $factory->setCredentials(
+            $session->get('github_login'),
+            $session->get('github_password')
+        )->create();
     }
 
     /**
@@ -30,7 +40,6 @@ class IssuesApiRepository implements IssuesRepositoryContract
      */
     public function search($keyword)
     {
-
         return $this->gitHubClient->search()->repositories($keyword);
     }
 
@@ -42,7 +51,6 @@ class IssuesApiRepository implements IssuesRepositoryContract
      */
     public function getIssuesOf($vendor, $repository, $params = [])
     {
-
         return $this->gitHubClient->issues()->all($vendor, $repository, $params);
     }
 

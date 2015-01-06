@@ -4,9 +4,7 @@ namespace Issues\Github\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
-use Illuminate\View\Factory;
 use Issues\Github\Contracts\IssuesRepositoryContract as IssuesRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -77,6 +75,76 @@ class CrudController extends Controller
             'vendor'     => $vendor,
             'repository' => $repository,
             'issue'      => $issue,
+        ];
+    }
+
+    /**
+     * @param Request $request
+     * @param $vendor
+     * @param $repository
+     * @return array
+     */
+    public function createIssue(Request $request, $vendor, $repository)
+    {
+        $data = $request->only(['title', 'body']);
+
+        try {
+            $issue = $this->issuesRepo->createIssue($vendor, $repository, $data);
+        } catch (\RuntimeException $e) {
+            throw new NotFoundHttpException(
+                sprintf('Repository %s/%s or issue was not found!', $vendor, $repository),
+                $e
+            );
+        }
+
+        return [
+            'issue' => $issue
+        ];
+    }
+
+    /**
+     * @param Request $request
+     * @param $vendor
+     * @param $repository
+     * @return array
+     */
+    public function updateIssue(Request $request, $vendor, $repository, $id)
+    {
+        $data = $request->only(['title', 'body']);
+
+        try {
+            $issue = $this->issuesRepo->updateIssue($vendor, $repository, $id, $data);
+        } catch (\RuntimeException $e) {
+            throw new NotFoundHttpException(
+                sprintf('Repository %s/%s or issue was not found!', $vendor, $repository),
+                $e
+            );
+        }
+
+        return [
+            'issue' => $issue
+        ];
+    }
+
+    /**
+     * @param string $vendor
+     * @param string $repository
+     * @param int $id
+     * @return array
+     */
+    public function closeIssue($vendor, $repository, $id)
+    {
+        try {
+            $issue = $this->issuesRepo->updateIssue($vendor, $repository, $id, ['state' => 'closed']);
+        } catch (\RuntimeException $e) {
+            throw new NotFoundHttpException(
+                sprintf('Repository %s/%s or issue was not found!', $vendor, $repository),
+                $e
+            );
+        }
+
+        return [
+            'issue' => $issue
         ];
     }
 }

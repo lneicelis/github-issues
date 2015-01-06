@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\Container\Container;
+use Illuminate\Session\SessionInterface;
+
 /**
  * Class HomeController
  * @package App\Http\Controllers

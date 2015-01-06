@@ -20,6 +20,9 @@ module.exports = [function () {
                                 });
 
                             return deferred.promise;
+                        }],
+                        user: ['auth.userService', function (UserService) {
+                            return UserService.resolveUser();
                         }]
                     }
                 })
@@ -31,16 +34,13 @@ module.exports = [function () {
                     },
                     controller: 'issues.issueCtrl',
                     resolve: {
-                        issue: ['$q', '$http', '$stateParams', function ($q, $http, $stateParams) {
-                            var deferred = $q.defer();
-                            var params = $stateParams;
+                        issue: ['$stateParams', 'issues.issueService', function ($stateParams, IssueService) {
 
-                            $http.get('/issues/github/' + params.vendor + '/' + params.repository + '/' + params.id)
-                                .success(function (res) {
-                                    deferred.resolve(res.issue);
-                                });
-
-                            return deferred.promise;
+                            return IssueService.resolveIssue(
+                                $stateParams.vendor,
+                                $stateParams.repository,
+                                $stateParams.id
+                            );
                         }],
                         comments: ['$q', '$http', '$stateParams', function ($q, $http, $stateParams) {
                             var deferred = $q.defer();
@@ -52,8 +52,19 @@ module.exports = [function () {
                                 });
 
                             return deferred.promise;
+                        }],
+                        user: ['auth.userService', function (UserService) {
+                            return UserService.resolveUser();
                         }]
                     }
+                })
+                .state('issueCreate', {
+                    url: '/issue/{vendor}/{repository}/{id}/form',
+                    templateUrl: '/views/issues/issue-form.html',
+                    data: {
+                        pageTitle: 'Issue'
+                    },
+                    controller: 'issues.issueCreateCtrl'
                 })
             ;
         }

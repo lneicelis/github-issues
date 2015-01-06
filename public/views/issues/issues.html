@@ -2,16 +2,26 @@
     <div class="col-xs-12">
         <h3>Showing issues of "{{ params.vendor + '/' + params.repository }}" repository</h3>
 
+        <p>
+            <button class="btn btn-success" ng-if="user" ng-click="toggleForm()">Open Issue</button>
+            <a class="btn btn-primary" ng-if="!user" ui-sref="login">Login to open an issue</a>
+
+            <button class="btn btn-danger pull-right" ng-if="user" ng-click="logout()">Logout</button>
+        </p>
+
+        <div ng-if="showForm" ng-include="'/views/issues/issue-form.html'"></div>
+
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="issue in issues">
                 <span class="label" ng-class="{'label-success': issue.state === 'open'}">
                     {{ issue.state }}
                 </span>
                 &nbsp;
+                <span class="badge">{{ issue.comments }}</span>
                 <a ui-sref="issue({vendor: params.vendor, repository: params.repository, id: issue.number})">
                     {{ issue.title }}
-                    <span class="badge">{{ issue.comments }}</span>
                 </a>
+                <small am-time-ago="issue.created_at"></small>
             </li>
         </ul>
 

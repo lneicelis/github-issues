@@ -19,7 +19,9 @@
   </head>
   <body>
     <div class="container">
+        @section('content')
         <div ui-view=""></div>
+        @show
     </div>
 
     <script src="{{ asset('/components/jquery/dist/jquery.min.js') }}"></script>

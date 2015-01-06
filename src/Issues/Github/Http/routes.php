@@ -21,6 +21,21 @@ $router->group([
         'uses' => 'IssueCommentsController@listComments'
     ]);
 
+    $router->post('/{vendor}/{repository}',[
+        'as'   => 'issues::create',
+        'uses' => 'CrudController@createIssue'
+    ]);
+
+    $router->post('/{vendor}/{repository}/{id}/close',[
+        'as'   => 'issues::close',
+        'uses' => 'CrudController@closeIssue'
+    ]);
+
+    $router->patch('/{vendor}/{repository}/{id}',[
+        'as'   => 'issues::update',
+        'uses' => 'CrudController@updateIssue'
+    ]);
+
     $router->get('/{vendor}/{repository}', [
         'as'   => 'issues::list',
         'uses' => 'CrudController@listIssues'

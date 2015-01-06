@@ -18,6 +18,7 @@
 		],
 		"psr-4": {
 			"App\\": "app/",
+			"Auth\\": "src/Auth",
 			"Issues\\": "src/Issues"
 		}
 	},

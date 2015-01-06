@@ -1,6 +1,6 @@
 <?php
 
-namespace Issues\Github\Providers;
+namespace Auth\Github\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 
@@ -13,7 +13,7 @@ class RoutesServiceProvider extends RouteServiceProvider
     /**
      * @var string
      */
-    protected $namespace = 'Issues\Github\Http\Controllers';
+    protected $namespace = 'Auth\Github\Http\Controllers';
 
     public function map()
     {

@@ -8,14 +8,23 @@
                     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
                 </a>
 
+                <button class="btn btn-primary" ng-if="user && user.id === issue.user.id"
+                        ng-click="toggleForm()">Edit</button>
+                <button class="btn btn-danger" ng-if="user && user.id === issue.user.id"
+                        ng-click="closeIssue()">Close Issue</button>
+
                 {{ issue.title }}
                 <small>
                     <a href="{{ issue.user.html_url }}">{{ issue.user.login }}</a> opened this issue
                     <span am-time-ago="issue.created_at"></span>
                 </small>
             </h3>
+
+            <p>{{ issue.body }}</p>
         </div>
     </div>
+
+    <div ng-if="showForm" ng-include="'/views/issues/issue-form.html'"></div>
 
     <div class="media" ng-repeat="comment in comments">
         <a class="media-left" href="#">

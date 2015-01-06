@@ -38,4 +38,22 @@ interface IssuesRepositoryContract
      * @return array
      */
     public function getIssueComments($vendor, $repository, $id, $page = 1);
+
+    /**
+     * @param string $vendor
+     * @param string $repository
+     * @param int $id
+     * @param array $data
+     * @return array
+     */
+    public function updateIssue($vendor, $repository, $id, array $data);
+
+    /**
+     * @param string $vendor
+     * @param string $repository
+     * @param array $data
+     * @return array
+     * @throws \Github\Exception\MissingArgumentException
+     */
+    public function createIssue($vendor, $repository, array $data);
 }

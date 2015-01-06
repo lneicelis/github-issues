@@ -118,6 +118,8 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		\Auth\Github\Providers\RoutesServiceProvider::class,
+
 		\Issues\Github\Providers\IssuesServiceProvider::class,
 		\Issues\Github\Providers\RoutesServiceProvider::class,
 
