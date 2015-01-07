@@ -7,17 +7,13 @@ $router->group([
 ], function ($router) {
     /** @var \Illuminate\Routing\Router $router */
 
-    $router->get('/repositories/{keyword}', [
-        'uses' => 'RepositoriesController@search'
-    ]);
-
     $router->get('/{vendor}/{repository}/{id}', [
         'as'   => 'issues::show',
         'uses' => 'CrudController@showIssue'
     ]);
 
     $router->get('/{vendor}/{repository}/{id}/comments', [
-        'as'   => 'issues::show',
+        'as'   => 'issues::issue.comments.list',
         'uses' => 'IssueCommentsController@listComments'
     ]);
 
