@@ -9,12 +9,6 @@ namespace Issues\Github\Contracts;
 interface IssuesRepositoryContract
 {
     /**
-     * @param string $keyword
-     * @return array
-     */
-    public function search($keyword);
-
-    /**
      * @param string $vendor
      * @param string $repository
      * @param array $params

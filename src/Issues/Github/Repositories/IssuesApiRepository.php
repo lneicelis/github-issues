@@ -35,15 +35,6 @@ class IssuesApiRepository implements IssuesRepositoryContract
     }
 
     /**
-     * @param string $keyword
-     * @return array
-     */
-    public function search($keyword)
-    {
-        return $this->gitHubClient->search()->repositories($keyword);
-    }
-
-    /**
      * @param string $vendor
      * @param string $repository
      * @param  array $params

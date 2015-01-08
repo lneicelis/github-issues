@@ -3,7 +3,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "~5.0",
-		"knplabs/github-api": "~1.3@dev"
+		"knplabs/github-api": "~1.3@dev",
+		"codeception/aspect-mock": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -21,7 +22,7 @@
 	},
 	"autoload-dev": {
 		"classmap": [
-			"tests/TestCase.php"
+			"tests"
 		]
 	},
 	"scripts": {

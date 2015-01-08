@@ -12,12 +12,12 @@ $router->group([
     ]);
 
     $router->post('/login', [
-        'as'   => 'issues::login',
+        'as'   => 'auth::login',
         'uses' => 'AuthController@login'
     ]);
 
     $router->post('/logout', [
-        'as'   => 'issues::logout',
+        'as'   => 'auth::logout',
         'uses' => 'AuthController@logout'
     ]);
 });

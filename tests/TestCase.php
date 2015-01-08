@@ -1,5 +1,8 @@
 <?php
 
+use AspectMock\Test;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
 	/**
@@ -16,4 +19,20 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase {
 		return $app;
 	}
 
+	public function setUp()
+	{
+		parent::setUp();
+
+		// disabling csrf protection in test mode
+		Test::double(VerifyCsrfToken::class, [
+			'tokensMatch' => true
+		]);
+	}
+
+	public function tearDown()
+	{
+		parent::tearDown();
+
+		Test::clean();
+	}
 }
