@@ -30,7 +30,7 @@ require __DIR__.'/../vendor/autoload.php';
 $kernel = \AspectMock\Kernel::getInstance();
 $kernel->init([
 	'appDir'    => __DIR__ . '/../',
-	'cacheDir'  => '/storage/aspect_mock',
+	'cacheDir'  => __DIR__ . '/storage/aspect_mock',
 	'includePaths' => [
 		__DIR__ . '/../src',
 		__DIR__ . '/../vendor/laravel',
