@@ -39,10 +39,3 @@ $kernel->init([
 	'vendorDir' => __DIR__ . '/../vendor',
     'excludePaths' => [__DIR__ . '/../tests'] // tests dir should be excluded
 ]);
-
-$compiledPath = __DIR__.'/../storage/framework/compiled.php';
-
-if (file_exists($compiledPath))
-{
-	require $compiledPath;
-}
