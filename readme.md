@@ -17,6 +17,7 @@
  * bower
  * Gulp
  * browserify
+
 ## Requirements
 
 * \> php 5.5
@@ -32,11 +33,20 @@
 * cd public
 * php -S localhost:8000
 * visit http://localhost:8000/
+* navigate to http://localhost:8000/#/login
+* or or http://localhost:8000/#/issues/{vendor}/{repo} e.g. http://localhost:8000/#/issues/luknei/github-issues
 
 ## Features
 
 * Login/logout to github
-* List repository issues
+* List repository issues (filter by state)
 * Read issue and issue comments
 * Update issue
 * Close issue
+
+## TODO
+
+* display errors to end user
+* write tests for front end
+* write acceptance tests
+* improve UI

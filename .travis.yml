@@ -2,7 +2,7 @@ language: php
 php:
   - 5.5
 before_script:
-  - composer install --prefer-dist --no-interaction
+  - composer install --prefer-source --dev --no-interaction
   - chmod -R 777 ./storage
 script:
-  - vendor/bin/phpunit --coverage-text --prefer-source --dev
+  - vendor/bin/phpunit --coverage-text

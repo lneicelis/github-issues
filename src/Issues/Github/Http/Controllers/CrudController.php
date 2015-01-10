@@ -32,11 +32,9 @@ class CrudController extends Controller
      * @param string $repository
      * @return \Illuminate\View\View
      */
-    public function listIssues($vendor, $repository)
+    public function listIssues(Request $request, $vendor, $repository)
     {
-        $params = [
-            'page' => Input::get('page', 1)
-        ];
+        $params = $request->only(['page', 'state']);
 
         try {
             $issues = $this->issuesRepo->getIssuesOf($vendor, $repository, $params);

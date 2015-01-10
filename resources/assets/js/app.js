@@ -15,10 +15,13 @@
         'app.auth'
     ])
         .config([
+            '$urlRouterProvider',
             '$stateProvider',
             'auth.routesProvider',
             'issues.routesProvider',
-            function ($stateProvider, authRoutes, issuesRoutes) {
+            function ($urlRouterProvider,$stateProvider, authRoutes, issuesRoutes) {
+                $urlRouterProvider.otherwise('/login');
+
                 authRoutes.addTo($stateProvider);
                 issuesRoutes.addTo($stateProvider);
             }

@@ -11,9 +11,36 @@
 
         <div ng-if="showForm" ng-include="'/views/issues/issue-form.html'"></div>
 
+        <div class="row issues-filter">
+            <div class="col-xs-4">
+                <div class="btn-group btn-group-justified" role="group" aria-label="Issues state">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default disabled">
+                            Filter Issues:
+                        </button>
+                    </div>
+
+                    <div class="btn-group" role="group">
+                        <a ui-sref="{state: 'open'}" class="btn btn-default"
+                           ng-class="{active: !params.state || params.state === 'open'}">
+                            Open
+                        </a>
+                    </div>
+
+                    <div class="btn-group" role="group">
+                        <a ui-sref="{state: 'closed'}" class="btn btn-default"
+                           ng-class="{active: params.state === 'closed'}">
+                            Closed
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="issue in issues">
-                <span class="label" ng-class="{'label-success': issue.state === 'open'}">
+                <span class="label"
+                      ng-class="{'label-success': issue.state === 'open', 'label-default': issue.state === 'closed'}">
                     {{ issue.state }}
                 </span>
                 &nbsp;

@@ -4,7 +4,7 @@ module.exports = [function () {
         addTo: function (stateProvider) {
             stateProvider
                 .state('issues', {
-                    url: '/issues/{vendor}/{repository}',
+                    url: '/issues/{vendor}/{repository}?state',
                     templateUrl: '/views/issues/issues.html',
                     data: {
                         pageTitle: 'Issues List'
@@ -13,9 +13,12 @@ module.exports = [function () {
                     resolve: {
                         issues: ['$q', '$http', '$stateParams', function ($q, $http, $stateParams) {
                             var deferred = $q.defer();
+                            var params = $stateParams.state ? {state: $stateParams.state} : {};
 
-                            $http.get('/issues/github/' + $stateParams.vendor + '/' + $stateParams.repository)
-                                .success(function (res) {
+                            $http.get(
+                                '/issues/github/' + $stateParams.vendor + '/' + $stateParams.repository,
+                                {params: params}
+                            ).success(function (res) {
                                     deferred.resolve(res.issues);
                                 });
 
