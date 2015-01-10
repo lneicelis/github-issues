@@ -2,20 +2,21 @@
 
 [![Build Status](https://travis-ci.org/luknei/github-issues.svg)](https://travis-ci.org/luknei/github-issues)
 
-
 ## Tools
 
 * Backend - Laravel 5
-* Frontend - AngularJS
-* Gulp
-* npm
-* bower
-* browserify
-* SASS
-* AngularJs
-* jQuery
-* Bootstrap
-
+* Testing
+ * PHPUnit
+ * AspectMock
+* Frontend
+ * AngularJS
+ * jQuery
+ * bootstrap
+ * SASS
+* Asset management
+ * bower
+ * Gulp
+ * browserify
 ## Requirements
 
 * \> php 5.5
