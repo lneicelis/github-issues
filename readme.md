@@ -30,6 +30,7 @@
 * git clone https://github.com/luknei/github-issues.git
 * cd github-issues
 * composer install
+* bower install
 * cd public
 * php -S localhost:8000
 * visit http://localhost:8000/
